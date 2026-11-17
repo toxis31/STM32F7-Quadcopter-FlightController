@@ -1,0 +1,15 @@
+# Sorties de compilation STM32CubeIDE
+firmware/Debug/
+firmware/Release/
+*.o
+*.d
+*.su
+*.cyclo
+*.elf
+*.map
+*.list
+# Fichiers temporaires Altium
+hardware/altium/History/
+hardware/altium/Project Logs*/
+*.PcbDoc.htm
+*.SchDocPreview
