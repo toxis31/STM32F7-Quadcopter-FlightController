@@ -36,7 +36,7 @@ Vidéos complètes (720p, sans son) :
 
 | Vidéo | Contenu |
 |---|---|
-| [01_vol_manuel_interieur.mp4](media/videos/01_vol_manuel_interieur.mp4) | Vol manuel en intérieur |
+| [01_vol_manuel_interieur.mp4](media/videos/01_vol_manuel_interieur.mp4) | Vol manuel en intérieur (premier test avec mauvais réglages pid lidar) |
 | [02_reglage_PID.mp4](media/videos/02_reglage_PID.mp4) | Réglage des PID roulis / tangage |
 | [03_maintien_altitude_lidar.mp4](media/videos/03_maintien_altitude_lidar.mp4) | Maintien d'altitude sur le télémètre laser |
 | [04_essai_grange.mp4](media/videos/04_essai_grange.mp4) | Essai en grange, à l'abri du vent |
