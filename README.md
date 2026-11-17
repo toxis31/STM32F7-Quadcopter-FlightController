@@ -17,11 +17,35 @@ Projet de Master 1 à Junia ISEN Lille (novembre 2025 – avril 2026), réalisé
 
 > **Version publiée** : ce dépôt contient la dernière version du firmware partagée par l'équipe (V10).
 > La version finale, développée sur un poste de l'école, intégrait en plus un filtre de Kalman pour l'estimation
-> d'attitude ; elle n'a pas pu être récupérée.
+> d'attitude et un relais télémètre → baromètre pour le maintien d'altitude au-delà de la portée du télémètre ;
+> elle n'a pas pu être récupérée.
 
 <p align="center">
   <img src="media/drone_en_vol.jpg" width="640" alt="Le drone en vol stationnaire">
 </p>
+
+---
+
+## Démonstrations
+
+| Maintien d'altitude (télémètre laser) | Maintien d'altitude + position GPS |
+|---|---|
+| <img src="media/maintien_altitude.gif" height="300" alt="Maintien d'altitude"> | <img src="media/vol_grange.gif" height="300" alt="Maintien d'altitude et de position"> |
+
+Les essais avec GPS ont été faits dans une grange au toit en fibre de verre (transparent aux signaux GNSS) :
+ce jour-là, les rafales de vent rendaient impossible un vol stationnaire en extérieur. Le correcteur de position
+est volontairement très doux pour éviter que le drone ne parte d'un côté à l'autre : il corrige la dérive
+lentement.
+
+Vidéos complètes (720p, sans son) :
+
+| Vidéo | Contenu |
+|---|---|
+| [01_vol_manuel_interieur.mp4](media/videos/01_vol_manuel_interieur.mp4) | Vol manuel en intérieur |
+| [02_reglage_PID.mp4](media/videos/02_reglage_PID.mp4) | Réglage des PID roulis / tangage |
+| [03_maintien_altitude_lidar.mp4](media/videos/03_maintien_altitude_lidar.mp4) | Maintien d'altitude sur le télémètre laser |
+| [04_essai_grange.mp4](media/videos/04_essai_grange.mp4) | Essai en grange, à l'abri du vent |
+| [05_maintien_altitude_et_position_GPS.mp4](media/videos/05_maintien_altitude_et_position_GPS.mp4) | Maintien d'altitude et de position GPS activés |
 
 ---
 
@@ -192,10 +216,19 @@ hardware/
   altium/                Schéma, PCB et librairie Altium (version finale)
   BOM.md                 Nomenclature de la carte
 docs/                    Architecture, schéma et PCB en images
-media/                   Photos du drone
+media/                   Photos, GIF et vidéos des essais
 ```
 
 ---
+
+## Mise au point
+
+- **Emballement en altitude** : lors d'un des premiers essais du maintien d'altitude, des gains mal réglés ont
+  fait monter le drone brutalement. Dans la version publiée, la sortie du PID d'altitude est limitée à ±150 µs
+  autour des gaz de vol stationnaire et la consigne est bornée entre 0,2 et 3 m.
+- **Dérive du gyroscope et bruit des moteurs** : filtre matériel du MPU-6050, filtre passe-bas logiciel et
+  calibration au démarrage.
+- **Compas perturbé par les moteurs** : calibration hard/soft-iron et moyenne glissante.
 
 ## Limites connues et pistes d'amélioration
 
@@ -203,8 +236,8 @@ media/                   Photos du drone
   de vitesse horizontale pour tenir la position en intérieur, sans GPS.
 - **Point GPS** : la cible du maintien de position est codée en dur dans `main.c`. Il faudra la mémoriser à
   l'activation, puis gérer une liste de points de passage.
-- **Baromètre** : l'altitude est mesurée mais pas encore fusionnée avec le télémètre, qui reste limité à
-  quelques mètres.
+- **Baromètre** : dans cette version, l'altitude barométrique est mesurée mais pas utilisée ; le relais
+  télémètre → baromètre de la version finale est à réintégrer.
 - **Réglages** : les gains et les calibrations sont des constantes ; un réglage par la télémétrie éviterait de
   recompiler.
 - **Filtrage** : cette version (V10) utilise le filtre complémentaire. Le filtre de Kalman de la version finale,
