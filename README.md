@@ -15,11 +15,6 @@ Le passage au STM32 apporte le calcul flottant matériel, plus de périphérique
 
 Projet de Master 1 à Junia ISEN Lille (novembre 2025 – avril 2026), réalisé en équipe de quatre.
 
-> **Version publiée** : ce dépôt contient la dernière version du firmware partagée par l'équipe (V10).
-> La version finale, développée sur un poste de l'école, intégrait en plus un filtre de Kalman pour l'estimation
-> d'attitude et un relais télémètre → baromètre pour le maintien d'altitude au-delà de la portée du télémètre ;
-> elle n'a pas pu être récupérée.
-
 <p align="center">
   <img src="media/drone_en_vol.jpg" width="640" alt="Le drone en vol stationnaire">
 </p>
