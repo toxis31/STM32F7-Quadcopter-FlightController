@@ -221,16 +221,6 @@ Projet de Master 1 — Junia ISEN Lille, encadré par M. Jean-Marc Capron.
 - Thomas Chochoy
 - Thomas Cotdeloup
 
-### Ma contribution (Thomas Cotdeloup)
-
-J'ai développé le firmware à deux avec Thomas Chochoy, en intervenant sur l'ensemble du code. J'ai plus
-particulièrement pris en charge :
-
-- **GPS** : décodeur du protocole UBX (trames NAV-PVT), interpolation 5 Hz → 250 Hz et maintien de position
-  (correcteur PD, rotation du repère terrestre vers le repère drone par le cap boussole) ;
-- **Télémètre et flux optique** : décodeur Micolink du MTF-02P et maintien d'altitude ;
-- **PID** : boucles roulis / tangage / lacet et altitude, réglage des gains en vol ;
-- **Commande des moteurs** : génération PWM des ESC et séquence de calibration.
 
 <p align="center">
   <img src="media/vol_stationnaire_equipe.jpg" width="420" alt="L'équipe et le drone en vol stationnaire">
